@@ -1,10 +1,23 @@
 import THREE from 'three';
+import PropTypes from 'react/lib/ReactPropTypes';
 import MaterialDescriptorBase from './MaterialDescriptorBase';
 
 class MeshLambertMaterialDescriptor extends MaterialDescriptorBase {
 
   constructor(react3RendererInstance) {
     super(react3RendererInstance);
+
+    this.hasProp('fog', {
+      type: PropTypes.bool,
+      update(threeObject, fog, existsInProps) {
+        if (existsInProps) {
+          threeObject.fog = fog;
+        }
+        threeObject.needsUpdate = true;
+      },
+      updateInitial: true,
+      default: false,
+    });
 
     this.hasColor();
     this.hasColor('emissive', 0);

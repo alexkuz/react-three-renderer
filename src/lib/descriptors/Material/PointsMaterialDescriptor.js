@@ -27,6 +27,18 @@ class PointsMaterialDescriptor extends MaterialDescriptorBase {
       default: true,
     });
 
+    this.hasProp('depthTest', {
+      type: PropTypes.bool,
+      update(threeObject, depthTest, existsInProps) {
+        if (existsInProps) {
+          threeObject.depthTest = depthTest;
+        }
+        threeObject.needsUpdate = true;
+      },
+      updateInitial: true,
+      default: true,
+    });
+
     this.hasProp('fog', {
       type: PropTypes.bool,
       update(threeObject, fog, existsInProps) {
@@ -47,6 +59,18 @@ class PointsMaterialDescriptor extends MaterialDescriptorBase {
       ]),
       simple: true,
       default: THREE.NoColors,
+    });
+
+    this.hasProp('blending', {
+      type: PropTypes.oneOf([
+        THREE.NormalBlending,
+        THREE.AdditiveBlending,
+        THREE.SubtractiveBlending,
+        THREE.MultiplyBlending,
+        THREE.AdditiveAlphaBlending,
+      ]),
+      simple: true,
+      default: THREE.NormalBlending,
     });
   }
 

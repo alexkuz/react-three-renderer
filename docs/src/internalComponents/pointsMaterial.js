@@ -19,6 +19,8 @@ class pointsMaterial extends MaterialInfo {
       sizeAttenuation: '',
       fog: '',
       vertexColors: '',
+      depthTest: '',
+      blending: '',
     };
   }
 }
