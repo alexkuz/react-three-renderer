@@ -19,6 +19,18 @@ class ShaderMaterialDescriptor extends MaterialDescriptorBase {
       });
     });
 
+    this.hasProp('fog', {
+      type: PropTypes.bool,
+      update(threeObject, fog, existsInProps) {
+        if (existsInProps) {
+          threeObject.fog = fog;
+        }
+        threeObject.needsUpdate = true;
+      },
+      updateInitial: true,
+      default: false,
+    });
+
     this.hasProp('uniforms', {
       type: PropTypes.any,
       simple: true,
